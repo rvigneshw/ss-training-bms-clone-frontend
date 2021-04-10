@@ -1,8 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+import rootReducer from '../redux/reducers/reducer';
+import movieReducer from '../redux/reducers/movieReducer';
+import cityReducer from '../redux/reducers/cityReducer';
+import theatreHallReducer from '../redux/reducers/theatreHallReducer';
+import seatBookingReducer from '../redux/reducers/seatBookingReducer';
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    city: cityReducer,
+    movie: movieReducer,
+    theatreHall:theatreHallReducer,
+    seatBoooking:seatBookingReducer
   },
 });
