@@ -6,10 +6,12 @@ import {
   Link
 } from "react-router-dom";
 import Cities from "./pages/Cities";
+import Login from "./pages/Login";
 import Movies from "./pages/Movies";
 import Payment from "./pages/Payment";
 import Screens from "./pages/Screens";
 import SelectSeat from "./pages/SelectSeat";
+import MyTickets from "./pages/MyTickets";
 
 export default function AppRouter() {
   return (
@@ -30,6 +32,12 @@ export default function AppRouter() {
           </Route>
           <Route path="/Payment">
             <Payment />
+          </Route>
+          <Route path="/Login">
+            <Login />
+          </Route>
+          <Route path="/me">
+            <MyTickets />
           </Route>
         </Switch>
       </div>

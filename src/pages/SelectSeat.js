@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 // import {theatreHalls,moviesInCity,getTheatresForSelectedMovieAsync} from '../redux/reducers/reducer';
 import {useDispatch, useSelector} from 'react-redux';
 import {theatreHalls} from '../redux/reducers/theatreHallReducer';
-import { seatDetails, bookSeats} from '../redux/reducers/seatBookingReducer';
+import { seatDetails, bookSeats, setSelectedSeatsAsync} from '../redux/reducers/seatBookingReducer';
 import { Checkbox } from 'antd';
 
 
@@ -53,8 +53,9 @@ function ListData(){
       
     </List.Item>
   )}/>
-  <Link to="/cities"><Button onClick={()=>{
-    dispatch(bookSeats(selectedSeats))
+  <Link to="/Payment"><Button onClick={()=>{
+    // dispatch(bookSeats(selectedSeats))
+    dispatch(setSelectedSeatsAsync(selectedSeats))
   }}>Book</Button></Link>
   </>;
 }

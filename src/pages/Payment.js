@@ -1,37 +1,28 @@
-import { List, Card, Button } from 'antd';
+import { List, Card, Input } from 'antd';
 import { Header } from 'antd/lib/layout/layout';
 import { Link } from 'react-router-dom';
-
-const data = [
-  {
-    title: 'Title 1',
-  },
-  {
-    title: 'Title 2',
-  },
-  {
-    title: 'Title 3',
-  },
-  {
-    title: 'Title 4',
-  },
-];
-
-function ListData(){
-    return <List
-    grid={{ gutter: 16, column: 3 }}
-    dataSource={data}
-    renderItem={item => (
-      <List.Item>
-        <Card title={item.title}>Card content</Card>
-        <Button>Select</Button>
-      </List.Item>
-    )}/>;
-}
-
+import { Result, Button } from 'antd';
+import {selectedSeats,bookSeats} from '../redux/reducers/seatBookingReducer'
+;
+import { useDispatch, useSelector } from 'react-redux';
 export default function Payment(){
+  const dispatch = useDispatch();
+    const data = useSelector(selectedSeats);
+    const price = Number(data.length)*120;
     return <div>
-        <Header style={{color:'white'}}>Payment Details</Header>
-        <ListData/>
+        <Result
+    status="success"
+    title="Press ok to book the seats"
+    subTitle={`Total price ${price}`}
+    extra={[
+      <Link to="/cities"><Button onClick={()=>{
+        dispatch(bookSeats(data))
+        // dispatch(setSelectedSeatsAsync(selectedSeats))
+      }}>Book</Button></Link>,
+      <Button key="/cities">Cancel</Button>,
+    ]}
+  />
     </div>
 }
+
+

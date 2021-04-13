@@ -3,7 +3,8 @@ import axios from 'axios';
 
 const initialState = {
   selectedShow: '',
-  seatDetails:[]
+  seatDetails:[],
+  selectedSeats:null
 };
 
 export const getSeatsForTheSelectedShow = createAsyncThunk(
@@ -48,6 +49,9 @@ export const seatBookingReducer = createSlice({
   reducers: {
     selectTheatreHall: (state, action) => {
       state.selectedTheatreHall = action.payload;
+    },  
+    setSelectedSeatsAsync: (state, action) => {
+      state.selectedSeats = action.payload;
     }  
   },
   // The `reducers` field lets us define reducers and generate associated actions
@@ -62,8 +66,9 @@ export const seatBookingReducer = createSlice({
   },
 });
 
-export const { selectTheatreHall } = seatBookingReducer.actions;
+export const { selectTheatreHall, setSelectedSeatsAsync } = seatBookingReducer.actions;
 export const selectedShow = (state) => state.seatBoooking.selectedShow;
 export const seatDetails = (state) => state.seatBoooking.seatDetails;
+export const selectedSeats = (state) => state.seatBoooking.selectedSeats;
 
 export default seatBookingReducer.reducer;
