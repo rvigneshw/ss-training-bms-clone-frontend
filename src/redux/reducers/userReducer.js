@@ -10,8 +10,26 @@ const initialState = {
 export const loginUser = createAsyncThunk(
     'city/login',
     async (data) => {
-      const response = await axios.post('http://localhost:5000/login/', data)
-      // const response = await axios.get(`http://localhost:5000/getMoviesForCity/${id}`);
+      var myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+
+      var raw = JSON.stringify(data);
+
+      var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow',
+        crendentials:'same-origin'
+      };
+
+      const responseData = await fetch("/login", requestOptions)
+      const response = await responseData.json()
+      //   .then(response => response.text())
+      //   .then(result => console.log(result))
+      //   .catch(error => console.log('error', error));
+      // const response = await axios.post('/login/', data)
+      // // const response = await axios.get(`/getMoviesForCity/${id}`);
       console.log(response);
       return response;
     }
@@ -20,8 +38,8 @@ export const loginUser = createAsyncThunk(
 export const getSeatsBookedByUser = createAsyncThunk(
     'getSeatsBookedByUser',
     async (data) => {
-      const response = await axios.get('http://localhost:5000/getSeatsBookedByUser/1')
-      // const response = await axios.get(`http://localhost:5000/getMoviesForCity/${id}`);
+      const response = await axios.get('/getSeatsBookedByUser/1')
+      // const response = await axios.get(`/getMoviesForCity/${id}`);
       console.log(response);
       return response;
     }
@@ -39,14 +57,14 @@ export const userSlice = createSlice({
       state.seatsBookedDetails = action.payload;
     },
     setCurrentUser: (state,action) => {
-        state.currentUser = action.payload;
+        state.currentUser = action.payload.data.user;
     }
   },
   extraReducers: (builder) => {
     builder
       .addCase(loginUser.fulfilled, (state, action) => {
         state.isLoggedIn = true;
-        state.currentUser = action.payload;
+        state.currentUser = action.payload.data.user;
       })
       .addCase(getSeatsBookedByUser.fulfilled, (state, action) => {
         state.seatsBookedDetails = action.payload;

@@ -15,7 +15,7 @@ function ListData(){
   const dispatch = useDispatch();
   const [data,setData] = useState();
   useEffect(async ()=>{
-    const response = await axios.get('http://localhost:5000/getSeatsBookedByUser/1')
+    const response = await axios.get('/getSeatsBookedByUser/1')
     console.log(response.data.data.Seats)
     // dispatch(setSeatDetails(response.data.data.Seats))
     setData(response.data.data.Seats)

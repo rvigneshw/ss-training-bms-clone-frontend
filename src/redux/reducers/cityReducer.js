@@ -9,7 +9,7 @@ const initialState = {
 export const selectCityAsync = createAsyncThunk(
     'city/select',
     async (id) => {
-      const response = await axios.get(`http://localhost:5000/getMoviesForCity/${id}`);
+      const response = await axios.get(`/getMoviesForCity/${id}`);
       console.log(response);
       return {id,response};
     }

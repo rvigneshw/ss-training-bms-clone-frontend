@@ -16,7 +16,7 @@ function ListData(){
   
   const data = useSelector(allCities);
   useEffect(async ()=>{
-    const response = await axios.get("http://localhost:5000/cities");
+    const response = await axios.get("/cities");
     dispatch(setCities(response))
     console.log(response)
   },[])

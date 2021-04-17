@@ -12,7 +12,7 @@ export const getSeatsForTheSelectedShow = createAsyncThunk(
     async (data) => {
     console.log(data);
     // console.log(data.movieID);
-    const url = `http://localhost:5000/getSeatsForTheSelectedShow/${data}`;
+    const url = `/getSeatsForTheSelectedShow/${data}`;
     console.log(url);
     const response = await axios.get(url);
     console.log(response);
@@ -27,13 +27,13 @@ export const bookSeats = createAsyncThunk(
     console.log(data);
     // console.log(data.movieID);
     data.forEach(async (element) => {
-        const url = `http://localhost:5000/bookSeat/${element}`;
+        const url = `/bookSeat/${element}`;
         console.log(url);
         const response = await axios.get(url);
         console.log(response);
     // return response;
     });
-    // const url = `http://localhost:5000/bookSeats/${data}`;
+    // const url = `/bookSeats/${data}`;
     // console.log(url);
     // const response = await axios.get(url);
     // console.log(response);

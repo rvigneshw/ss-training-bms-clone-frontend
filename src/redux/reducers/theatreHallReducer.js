@@ -11,7 +11,7 @@ export const getTheatresForSelectedMovie = createAsyncThunk(
     async (data) => {
     console.log(data.cityID);
     console.log(data.movieID);
-    const url = `http://localhost:5000/getTheatresForSelectedMovie/${data.cityID}/${data.movieID}`;
+    const url = `/getTheatresForSelectedMovie/${data.cityID}/${data.movieID}`;
     console.log(url);
     const response = await axios.get(url);
     console.log(response);

@@ -21,7 +21,7 @@ const initialState = {
 export const getAllCities = createAsyncThunk(
   'city/fetchAll',
   async () => {
-    const response = await axios.get("http://localhost:5000/cities");
+    const response = await axios.get("/cities");
     // console
     return response;
   }
@@ -30,7 +30,7 @@ export const getAllCities = createAsyncThunk(
 export const selectCityAsync = createAsyncThunk(
     'city/select',
     async (id) => {
-      const response = await axios.get(`http://localhost:5000/getMoviesForCity/${id}`);
+      const response = await axios.get(`/getMoviesForCity/${id}`);
       console.log(response);
       return {id,response};
     }
@@ -39,7 +39,7 @@ export const selectCityAsync = createAsyncThunk(
 export const selectMovieAsync = createAsyncThunk(
     'selectMovieAsync',
     async (id) => {
-      const response = await axios.get(`http://localhost:5000/getMoviesForCity/${id}`);
+      const response = await axios.get(`/getMoviesForCity/${id}`);
       console.log(response);
       return response;
     }
@@ -50,7 +50,7 @@ export const getTheatresForSelectedMovieAsync = createAsyncThunk(
     async (data) => {
     console.log(data.cityID);
     console.log(data.movieID);
-    const response = await axios.get(`http://localhost:5000/getTheatresForSelectedMovie/${data.cityID}/${data.movieID}`);
+    const response = await axios.get(`/getTheatresForSelectedMovie/${data.cityID}/${data.movieID}`);
     console.log(response);
     return response;
     }
@@ -61,7 +61,7 @@ export const getShowAsync = createAsyncThunk(
     async (data) => {
     console.log(data.cityID);
     console.log(data.movieID);
-    const response = await axios.get(`http://localhost:5000/getTheatresForSelectedMovie/${data.cityID}/${data.movieID}`);
+    const response = await axios.get(`/getTheatresForSelectedMovie/${data.cityID}/${data.movieID}`);
     console.log(response);
     return response;
     }
